@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071952">
+    <title>Candidate Verification | TIT CBT Examination Portal</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(8, 131, 149, .16), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(7, 25, 82, .12), transparent 35%),
+                #f4f7fc;
+            color: #17213b;
+        }
+
+        .verify-header {
+            background: linear-gradient(120deg, #071952, #088395);
+            color: white;
+            padding: 20px 6%;
+            box-shadow: 0 8px 30px rgba(7, 25, 82, .15);
+        }
+
+        .verify-brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            max-width: 1120px;
+            margin: auto;
+        }
+
+        .verify-logo {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, .45);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .12);
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .verify-brand h1 {
+            margin: 0;
+            font-size: clamp(16px, 2.4vw, 22px);
+            line-height: 1.4;
+        }
+
+        .verify-brand p {
+            margin: 4px 0 0;
+            color: #d5f5ff;
+            font-size: 12px;
+            letter-spacing: 1.3px;
+        }
+
+        .verify-main {
+            width: min(760px, 92%);
+            margin: 42px auto;
+        }
+
+        .verify-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+            color: #64718c;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .progress-line {
+            height: 4px;
+            flex: 1;
+            border-radius: 20px;
+            background: #dce5f2;
+            overflow: hidden;
+        }
+
+        .progress-line span {
+            display: block;
+            width: 50%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #088395, #24b6b5);
+        }
+
+        .verify-card {
+            overflow: hidden;
+            border: 1px solid #e5ebf4;
+            border-radius: 24px;
+            background: white;
+            box-shadow: 0 22px 70px rgba(17, 39, 86, .10);
+        }
+
+        .verify-card-top {
+            padding: 30px 34px 26px;
+            background: linear-gradient(135deg, #f8fcff, #edf8fb);
+            border-bottom: 1px solid #e6eef6;
+        }
+
+        .verify-icon {
+            display: grid;
+            place-items: center;
+            width: 56px;
+            height: 56px;
+            margin-bottom: 17px;
+            border-radius: 18px;
+            background: #d9f5f2;
+            color: #087f82;
+            font-size: 27px;
+        }
+
+        .verify-card-top h2 {
+            margin: 0 0 10px;
+            color: #071952;
+            font-size: clamp(22px, 4vw, 30px);
+        }
+
+        .verify-card-top p {
+            margin: 0;
+            color: #62708a;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .verify-body {
+            padding: 30px 34px 34px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            min-width: 0;
+            padding: 17px;
+            border: 1px solid #e6edf6;
+            border-radius: 14px;
+            background: #fbfcff;
+        }
+
+        .info-item.full {
+            grid-column: 1 / -1;
+        }
+
+        .info-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #738099;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            display: block;
+            overflow-wrap: anywhere;
+            color: #10234b;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        .registration-value {
+            color: #087f82;
+            letter-spacing: .5px;
+        }
+
+        .verify-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            margin-top: 22px;
+            padding: 15px;
+            border: 1px solid #d9e8ff;
+            border-radius: 13px;
+            background: #f3f8ff;
+            color: #445575;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .verify-notice strong {
+            color: #173b78;
+        }
+
+        .confirm-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 23px;
+            padding: 17px;
+            border: 1px solid #dfe7f1;
+            border-radius: 14px;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .confirm-row input {
+            width: 19px;
+            height: 19px;
+            margin: 2px 0 0;
+            flex-shrink: 0;
+            accent-color: #088395;
+            cursor: pointer;
+        }
+
+        .confirm-row span {
+            color: #35435e;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .verify-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .verify-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50px;
+            padding: 13px 20px;
+            border: 0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s, opacity .2s;
+        }
+
+        .verify-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            flex: 0 0 auto;
+            border: 1px solid #dce4ef;
+            background: #fff;
+            color: #34415d;
+        }
+
+        .btn-continue {
+            flex: 1;
+            color: #fff;
+            background: linear-gradient(110deg, #071952, #088395);
+            box-shadow: 0 9px 22px rgba(8, 131, 149, .22);
+        }
+
+        .btn-continue:disabled {
+            opacity: .45;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .verify-error {
+            margin-top: 15px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #fff0f0;
+            color: #a32222;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .verify-footer {
+            padding: 0 10px 25px;
+            text-align: center;
+            color: #7b879b;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 560px) {
+            .verify-header {
+                padding: 16px 5%;
+            }
+
+            .verify-logo {
+                width: 43px;
+                height: 43px;
+            }
+
+            .verify-main {
+                margin: 25px auto;
+            }
+
+            .verify-card {
+                border-radius: 18px;
+            }
+
+            .verify-card-top,
+            .verify-body {
+                padding: 23px 19px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 11px;
+            }
+
+            .info-item.full {
+                grid-column: auto;
+            }
+
+            .verify-actions {
+                flex-direction: column-reverse;
+            }
+
+            .verify-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="verify-header">
+        <div class="verify-brand">
+            <div class="verify-logo" aria-label="TIT">TIT</div>
+            <div>
+                <h1>TECHNO INSTITUTE OF TECHNOLOGY</h1>
+                <p>CBT EXAMINATION PORTAL</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="verify-main">
+        <div class="verify-progress" aria-label="Exam process step 2 of 4">
+            <span>Step 02</span>
+            <div class="progress-line" aria-hidden="true"><span></span></div>
+            <span>Verification</span>
+        </div>
+
+        <section class="verify-card" aria-labelledby="verifyTitle">
+            <div class="verify-card-top">
+                <div class="verify-icon" aria-hidden="true">✓</div>
+                <h2 id="verifyTitle">Candidate Verification</h2>
+                <p>
+                    Please carefully verify your registration details before proceeding
+                    to the examination instructions.
+                </p>
+            </div>
+
+            <div class="verify-body">
+                <div id="loadingMessage" role="status">
+                    Loading your candidate information...
+                </div>
+
+                <div id="candidateDetails" hidden>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Candidate Name</span>
+                            <span class="info-value" id="candidateName">—</span>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label">Father's Name</span>
+                            <span class="info-value" id="fatherName">—</span>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label">Class / Category</span>
+                            <span class="info-value" id="candidateClass">—</span>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label">Date of Birth</span>
+                            <span class="info-value" id="candidateDob">—</span>
+                        </div>
+
+                        <div class="info-item full">
+                            <span class="info-label">Registration Number</span>
+                            <span class="info-value registration-value" id="registrationNumber">—</span>
+                        </div>
+                    </div>
+
+                    <div class="verify-notice">
+                        <span aria-hidden="true">ℹ️</span>
+                        <div>
+                            <strong>Important:</strong> If any detail is incorrect, do not
+                            proceed. Return to the login page and contact the examination
+                            administrator for assistance.
+                        </div>
+                    </div>
+
+                    <form id="verificationForm">
+                        <label class="confirm-row" for="confirmDetails">
+                            <input type="checkbox" id="confirmDetails" name="confirmDetails" required>
+                            <span>
+                                I confirm that the candidate details displayed above are correct
+                                and belong to me. I am ready to read the examination instructions.
+                            </span>
+                        </label>
+
+                        <div id="verificationError" class="verify-error" role="alert" hidden></div>
+
+                        <div class="verify-actions">
+                            <a class="verify-btn btn-back" href="login.html">Back to Login</a>
+                            <button class="verify-btn btn-continue" id="continueButton" type="submit" disabled>
+                                Continue to Instructions →
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="accessError" class="verify-error" role="alert" hidden>
+                    Your login session is missing or invalid. Please log in again.
+                    <a href="login.html">Go to Login</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="verify-footer">
+            <div>TECHNO INSTITUTE OF TECHNOLOGY</div>
+            <div>Official candidate verification for the TIT CBT Examination Portal</div>
+            <div>© <span id="currentYear"></span> All rights reserved.</div>
+        </footer>
+    </main>
+
+    <script src="verification.js" defer></script>
+</body>
+
+</html>

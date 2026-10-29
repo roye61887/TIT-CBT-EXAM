@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071952">
+    <title>Exam Instructions | TIT CBT Examination Portal</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+            color: #17213b;
+            background:
+                radial-gradient(circle at 5% 5%, rgba(8, 131, 149, .13), transparent 30%),
+                #f3f6fc;
+        }
+
+        .ins-header {
+            padding: 19px 6%;
+            color: white;
+            background: linear-gradient(120deg, #071952, #088395);
+            box-shadow: 0 8px 25px rgba(7, 25, 82, .15);
+        }
+
+        .ins-brand {
+            max-width: 1050px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .ins-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border: 1px solid #ffffff66;
+            border-radius: 14px;
+            background: #ffffff1c;
+            font-weight: 800;
+            font-size: 19px;
+        }
+
+        .ins-brand h1 {
+            margin: 0;
+            font-size: clamp(16px, 2.5vw, 22px);
+            line-height: 1.4;
+        }
+
+        .ins-brand p {
+            margin: 4px 0 0;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: #d8f5ff;
+        }
+
+        .ins-main {
+            width: min(850px, 92%);
+            margin: 35px auto;
+        }
+
+        .ins-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #65728a;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .ins-progress-line {
+            height: 4px;
+            flex: 1;
+            border-radius: 10px;
+            background: #dce5f2;
+            overflow: hidden;
+        }
+
+        .ins-progress-line span {
+            display: block;
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(90deg, #088395, #26b6b3);
+        }
+
+        .ins-card {
+            overflow: hidden;
+            border: 1px solid #e4ebf5;
+            border-radius: 23px;
+            background: white;
+            box-shadow: 0 20px 60px #10234b12;
+        }
+
+        .ins-hero {
+            padding: 28px 32px;
+            color: white;
+            background: linear-gradient(120deg, #071952, #0a687f);
+        }
+
+        .ins-tag {
+            display: inline-block;
+            padding: 7px 11px;
+            border: 1px solid #ffffff40;
+            border-radius: 30px;
+            background: #ffffff15;
+            color: #d7f9ff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .ins-hero h2 {
+            margin: 15px 0 9px;
+            font-size: clamp(24px, 4vw, 32px);
+        }
+
+        .ins-hero p {
+            margin: 0;
+            color: #e0f0ff;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .ins-body {
+            padding: 28px 32px 32px;
+        }
+
+        .candidate-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 16px;
+            border: 1px solid #dce8f6;
+            border-radius: 14px;
+            background: #f7faff;
+        }
+
+        .candidate-strip .muted {
+            display: block;
+            margin-bottom: 5px;
+            color: #738099;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .candidate-strip strong {
+            color: #10234b;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .exam-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 13px;
+            margin-bottom: 27px;
+        }
+
+        .stat {
+            padding: 17px 12px;
+            text-align: center;
+            border: 1px solid #e3eaf4;
+            border-radius: 15px;
+            background: #fff;
+        }
+
+        .stat-icon {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 22px;
+        }
+
+        .stat strong {
+            display: block;
+            color: #071952;
+            font-size: 23px;
+        }
+
+        .stat span:last-child {
+            display: block;
+            margin-top: 5px;
+            color: #758199;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .ins-section-title {
+            margin: 0 0 14px;
+            color: #10234b;
+            font-size: 17px;
+        }
+
+        .rules-list {
+            display: grid;
+            gap: 11px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .rules-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid #e8edf5;
+            border-radius: 13px;
+            background: #fcfdff;
+            color: #46536d;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .rule-number {
+            display: grid;
+            place-items: center;
+            width: 27px;
+            height: 27px;
+            flex-shrink: 0;
+            border-radius: 9px;
+            background: #e0f6f4;
+            color: #087f82;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .rules-list strong {
+            color: #182a4e;
+        }
+
+        .warning-box {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+            padding: 16px;
+            border: 1px solid #f2dfb3;
+            border-radius: 13px;
+            background: #fffaf0;
+            color: #79551a;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .warning-box strong {
+            color: #754609;
+        }
+
+        .ins-confirm {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-top: 23px;
+            padding: 17px;
+            border: 1px solid #dce6f1;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        .ins-confirm input {
+            width: 19px;
+            height: 19px;
+            margin: 3px 0 0;
+            flex-shrink: 0;
+            accent-color: #088395;
+        }
+
+        .ins-confirm span {
+            color: #35435e;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .ins-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 23px;
+        }
+
+        .ins-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 13px 20px;
+            border: 0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .ins-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .ins-back {
+            border: 1px solid #dce4ef;
+            background: white;
+            color: #34415d;
+        }
+
+        .ins-start {
+            flex: 1;
+            color: white;
+            background: linear-gradient(110deg, #071952, #088395);
+            box-shadow: 0 9px 22px #0883952c;
+        }
+
+        .ins-start:disabled {
+            opacity: .45;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .ins-error {
+            margin-top: 15px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #fff0f0;
+            color: #a32222;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .ins-footer {
+            padding: 0 10px 25px;
+            color: #7b879b;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 560px) {
+            .ins-header {
+                padding: 16px 5%;
+            }
+
+            .ins-logo {
+                width: 43px;
+                height: 43px;
+            }
+
+            .ins-main {
+                margin: 23px auto;
+            }
+
+            .ins-card {
+                border-radius: 18px;
+            }
+
+            .ins-hero {
+                padding: 23px 20px;
+            }
+
+            .ins-body {
+                padding: 22px 18px;
+            }
+
+            .exam-stats {
+                gap: 8px;
+            }
+
+            .stat {
+                padding: 14px 5px;
+            }
+
+            .stat strong {
+                font-size: 20px;
+            }
+
+            .stat span:last-child {
+                font-size: 10px;
+            }
+
+            .ins-actions {
+                flex-direction: column-reverse;
+            }
+
+            .ins-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .exam-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-align: left;
+            }
+
+            .stat-icon {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="ins-header">
+        <div class="ins-brand">
+            <div class="ins-logo" aria-label="TIT">TIT</div>
+            <div>
+                <h1>TECHNO INSTITUTE OF TECHNOLOGY</h1>
+                <p>CBT EXAMINATION PORTAL</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="ins-main">
+        <div class="ins-progress" aria-label="Exam process step 3 of 4">
+            <span>Step 03</span>
+            <div class="ins-progress-line" aria-hidden="true"><span></span></div>
+            <span>Instructions</span>
+        </div>
+
+        <section class="ins-card">
+            <div class="ins-hero">
+                <span class="ins-tag">BEFORE YOU BEGIN</span>
+                <h2>Examination Instructions</h2>
+                <p>Please read all instructions carefully. Once you start, the examination timer will begin.</p>
+            </div>
+
+            <div class="ins-body">
+                <div id="loadingMessage" role="status">
+                    Verifying candidate session...
+                </div>
+
+                <div id="instructionContent" hidden>
+                    <div class="candidate-strip">
+                        <div>
+                            <span class="muted">Candidate Name</span>
+                            <strong id="candidateName">—</strong>
+                        </div>
+                        <div>
+                            <span class="muted">Registration Number</span>
+                            <strong id="registrationNumber">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="exam-stats">
+                        <div class="stat">
+                            <span class="stat-icon" aria-hidden="true">📝</span>
+                            <strong>40</strong>
+                            <span>Total Questions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-icon" aria-hidden="true">⏱️</span>
+                            <strong>60 Min</strong>
+                            <span>Time Allowed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-icon" aria-hidden="true">🎯</span>
+                            <strong>40</strong>
+                            <span>Maximum Marks</span>
+                        </div>
+                    </div>
+
+                    <h3 class="ins-section-title">Important Rules</h3>
+
+                    <ol class="rules-list">
+                        <li>
+                            <span class="rule-number">01</span>
+                            <div><strong>Question format:</strong> The examination contains 40 multiple-choice questions
+                                (MCQs). Select one answer for each question.</div>
+                        </li>
+                        <li>
+                            <span class="rule-number">02</span>
+                            <div><strong>Time limit:</strong> You have 60 minutes. The timer starts when you start the
+                                examination and does not pause when you leave the exam page.</div>
+                        </li>
+                        <li>
+                            <span class="rule-number">03</span>
+                            <div><strong>Marking scheme:</strong> Each correct answer carries 1 mark. Wrong and
+                                unanswered questions carry 0 marks. There is no negative marking in this demo
+                                configuration.</div>
+                        </li>
+                        <li>
+                            <span class="rule-number">04</span>
+                            <div><strong>Changing answers:</strong> You may change your selected answer before
+                                submitting the examination, wherever the exam interface permits.</div>
+                        </li>
+                        <li>
+                            <span class="rule-number">05</span>
+                            <div><strong>Submission:</strong> You can submit early after reviewing your answers. The
+                                examination will automatically submit when the timer reaches zero.</div>
+                        </li>
+                        <li>
+                            <span class="rule-number">06</span>
+                            <div><strong>Fair examination:</strong> Work independently. Do not seek outside assistance
+                                or use unauthorised materials during the examination.</div>
+                        </li>
+                        <li>
+                            <span class="rule-number">07</span>
+                            <div><strong>Technical readiness:</strong> Use a reliable device and power supply. Avoid
+                                refreshing or closing the examination tab while taking the test.</div>
+                        </li>
+                    </ol>
+
+                    <div class="warning-box">
+                        <span aria-hidden="true">⚠️</span>
+                        <div>
+                            <strong>Important notice:</strong> Starting the examination is intended to begin your timed
+                            attempt. Make sure you are ready before continuing.
+                        </div>
+                    </div>
+
+                    <form id="instructionsForm">
+                        <label class="ins-confirm" for="acceptInstructions">
+                            <input type="checkbox" id="acceptInstructions" required>
+                            <span>
+                                I have read and understood the examination instructions.
+                                I agree to follow the rules and understand that the examination
+                                will be timed once started.
+                            </span>
+                        </label>
+
+                        <div id="instructionError" class="ins-error" role="alert" hidden></div>
+
+                        <div class="ins-actions">
+                            <a href="verification.html" class="ins-btn ins-back">← Back to Verification</a>
+                            <button type="submit" id="startButton" class="ins-btn ins-start" disabled>
+                                Start Examination →
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="accessError" class="ins-error" role="alert" hidden>
+                    Your candidate session could not be verified. Please log in again.
+                    <a href="login.html">Go to Login</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="ins-footer">
+            <div>TECHNO INSTITUTE OF TECHNOLOGY</div>
+            <div>CBT Examination Portal · © <span id="currentYear"></span></div>
+        </footer>
+    </main>
+
+    <script src="instructions.js" defer></script>
+</body>
+
+</html>

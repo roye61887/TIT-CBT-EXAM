@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071952">
+
+    <title>Candidate Registration | TIT CBT Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .registration-section {
+            min-height: 100vh;
+            padding: 55px 20px 70px;
+            background:
+                radial-gradient(circle at 10% 10%, #dbeafe, transparent 35%),
+                radial-gradient(circle at 90% 90%, #e0f2fe, transparent 30%),
+                #f4f7ff;
+        }
+
+        .registration-wrapper {
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .registration-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .registration-heading .eyebrow {
+            margin-bottom: 10px;
+        }
+
+        .registration-heading h1 {
+            color: #071952;
+            font-size: clamp(27px, 4vw, 38px);
+            font-weight: 900;
+            line-height: 1.3;
+        }
+
+        .registration-heading p {
+            margin-top: 10px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .registration-card {
+            padding: 38px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(7,25,82,0.10);
+        }
+
+        .registration-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 23px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .registration-logo {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            border-radius: 15px;
+            color: white;
+            background: linear-gradient(135deg,#071952,#2563eb);
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .registration-card-header h2 {
+            color: #071952;
+            font-size: 19px;
+            line-height: 1.5;
+        }
+
+        .registration-card-header p {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .registration-grid {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 23px 20px;
+        }
+
+        .form-group {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #172554;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            min-width: 0;
+            height: 49px;
+            padding: 0 14px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: #fff;
+            color: #172554;
+            font-size: 14px;
+
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37,99,235,.10);
+        }
+
+        .form-group input::placeholder {
+            color: #94a3b8;
+        }
+
+        .mobile-input {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .mobile-input:focus-within {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37,99,235,.10);
+        }
+
+        .mobile-prefix {
+            height: 49px;
+            padding: 0 13px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+
+            background: #eff6ff;
+            border-right: 1px solid #dbeafe;
+            color: #071952;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .mobile-input input {
+            border: 0;
+            border-radius: 0;
+            box-shadow: none !important;
+        }
+
+        .form-help {
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        .registration-notice {
+            margin-top: 26px;
+            padding: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+
+            color: #1e40af;
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .registration-notice strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .registration-actions {
+            display: flex;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .registration-actions button,
+        .registration-actions a {
+            flex: 1;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 11px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .registration-submit {
+            color: white;
+            background: linear-gradient(135deg,#071952,#2563eb);
+            border: none;
+            box-shadow: 0 8px 20px rgba(37,99,235,.18);
+        }
+
+        .registration-submit:hover {
+            background: linear-gradient(135deg,#102b70,#1d4ed8);
+        }
+
+        .registration-back {
+            color: #071952;
+            background: white;
+            border: 1px solid #cbd5e1;
+        }
+
+        .registration-back:hover {
+            background: #f8fafc;
+        }
+
+        .registration-footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .registration-footer a {
+            color: #2563eb;
+            font-weight: 800;
+        }
+
+        .registration-result {
+            margin-top: 25px;
+            padding: 25px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 16px;
+        }
+
+        .registration-result h3 {
+            color: #166534;
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .registration-result p {
+            color: #166534;
+            font-size: 13px;
+        }
+
+        .credential-row {
+            margin-top: 15px;
+            padding: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            border: 1px solid #dcfce7;
+            border-radius: 10px;
+        }
+
+        .credential-label {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .credential-value {
+            color: #071952;
+            font-size: 14px;
+            font-weight: 900;
+            overflow-wrap: anywhere;
+            text-align: right;
+        }
+
+        .credential-warning {
+            margin-top: 15px;
+            color: #92400e !important;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 9px;
+            padding: 12px;
+        }
+
+        .registration-ok {
+            width: 100%;
+            min-height: 48px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            background: #166534;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .form-error {
+            margin-top: 15px;
+            padding: 12px 14px;
+            color: #991b1b;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 9px;
+            font-size: 13px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .registration-section {
+                padding: 32px 13px 45px;
+            }
+
+            .registration-card {
+                padding: 23px 17px;
+                border-radius: 17px;
+            }
+
+            .registration-grid {
+                grid-template-columns: minmax(0,1fr);
+                gap: 19px;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+            .registration-card-header h2 {
+                font-size: 16px;
+            }
+
+            .registration-card-header p {
+                font-size: 11px;
+            }
+
+            .registration-actions {
+                flex-direction: column;
+            }
+
+            .credential-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .credential-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="index.html" class="brand">
+        <div class="brand-logo">TIT</div>
+        <div class="brand-text">
+            <h2>TECHNO INSTITUTE</h2>
+            <span>OF TECHNOLOGY</span>
+        </div>
+    </a>
+
+    <a href="index.html" class="registration-back"
+       style="padding:10px 16px;border-radius:9px;font-size:12px;font-weight:800">
+        ← HOME
+    </a>
+</header>
+
+<main class="registration-section">
+
+    <div class="registration-wrapper">
+
+        <div class="registration-heading">
+            <span class="eyebrow">TIT CBT EXAMINATION PORTAL</span>
+            <h1>Candidate Registration</h1>
+            <p>Register yourself to access the online examination.</p>
+        </div>
+
+        <section class="registration-card">
+
+            <div class="registration-card-header">
+                <div class="registration-logo">TIT</div>
+                <div>
+                    <h2>New Candidate Registration</h2>
+                    <p>Fill in your correct personal information.</p>
+                </div>
+            </div>
+
+            <form id="registrationForm">
+
+                <div class="registration-grid">
+
+                    <div class="form-group">
+                        <label for="candidateName">
+                            Candidate Name <span class="required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="candidateName"
+                            name="candidateName"
+                            placeholder="ENTER FULL NAME"
+                            maxlength="100"
+                            autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fatherName">
+                            Father's Name <span class="required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="fatherName"
+                            name="fatherName"
+                            placeholder="ENTER FATHER'S NAME"
+                            maxlength="100"
+                            required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="candidateClass">
+                            Class <span class="required">*</span>
+                        </label>
+                        <select id="candidateClass"
+                                name="candidateClass"
+                                required>
+                            <option value="">-- SELECT YOUR CLASS --</option>
+                            <option value="10th">10th</option>
+                            <option value="12th Science">12th Science</option>
+                            <option value="12th Arts">12th Arts</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="mobileNumber">
+                            Mobile Number <span class="required">*</span>
+                        </label>
+
+                        <div class="mobile-input">
+                            <span class="mobile-prefix">+91</span>
+                            <input
+                                type="tel"
+                                id="mobileNumber"
+                                name="mobileNumber"
+                                placeholder="10-DIGIT MOBILE NUMBER"
+                                inputmode="numeric"
+                                autocomplete="tel-national"
+                                maxlength="10"
+                                pattern="[6-9][0-9]{9}"
+                                required>
+                        </div>
+
+                        <small class="form-help">
+                            Enter your 10-digit Indian mobile number.
+                        </small>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="dob">
+                            Date of Birth <span class="required">*</span>
+                        </label>
+                        <input
+                            type="date"
+                            id="dob"
+                            name="dob"
+                            autocomplete="bday"
+                            required>
+                        <small class="form-help">
+                            Your date of birth will be used to sign in.
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="registration-notice">
+                    <span>ⓘ</span>
+                    <div>
+                        <strong>Important Information</strong>
+                        Enter your details carefully. Your registration
+                        number will be generated after registration.
+                        Keep your registration credentials secure.
+                    </div>
+                </div>
+
+                <div id="formError"
+                     class="form-error"
+                     role="alert"
+                     hidden></div>
+
+                <div class="registration-actions">
+                    <a href="index.html" class="registration-back">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="registration-submit"
+                            id="registerButton">
+                        Register Now →
+                    </button>
+                </div>
+
+            </form>
+
+            <section id="registrationSuccess"
+                     class="registration-result"
+                     aria-live="polite"
+                     hidden>
+
+                <h3>Registration Successful!</h3>
+
+                <p>Your candidate registration has been created.</p>
+
+                <div class="credential-row">
+                    <span class="credential-label">Registration Number</span>
+                    <span id="generatedRegNo"
+                          class="credential-value"></span>
+                </div>
+
+                <div class="credential-row">
+                    <span class="credential-label">Class</span>
+                    <span id="generatedClass"
+                          class="credential-value"></span>
+                </div>
+
+                <p class="credential-warning">
+                    Remember your Registration Number and Date of Birth.
+                    Do not share your date of birth with other people.
+                </p>
+
+                <button type="button"
+                        class="registration-ok"
+                        id="registrationOk">
+                    OK — Continue to CBT Login →
+                </button>
+
+            </section>
+
+            <div class="registration-footer">
+                Already registered?
+                <a href="login.html">Sign In</a>
+            </div>
+
+        </section>
+
+        <div class="registration-footer">
+            © <span id="currentYear"></span>
+            TECHNO INSTITUTE OF TECHNOLOGY
+        </div>
+
+    </div>
+
+</main>
+
+<script src="register.js"></script>
+
+</body>
+</html>

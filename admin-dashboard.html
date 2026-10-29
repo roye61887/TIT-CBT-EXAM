@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#071952">
+    <title>Admin Dashboard | TIT CBT Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #17213b;
+            background: #f3f6fc;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 18px 5%;
+            color: white;
+            background: linear-gradient(120deg, #071952, #088395);
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .brand small {
+            display: block;
+            margin-top: 5px;
+            color: #d7f7ff;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .logout {
+            padding: 10px 15px;
+            border: 1px solid #ffffff66;
+            border-radius: 10px;
+            color: white;
+            background: #ffffff16;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .container {
+            width: min(1450px, 94%);
+            margin: 28px auto;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 23px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #071952;
+            font-size: 27px;
+        }
+
+        .subheading {
+            margin-top: 7px;
+            color: #77839a;
+            font-size: 13px;
+        }
+
+        .demo-warning {
+            margin-bottom: 20px;
+            padding: 13px 16px;
+            border: 1px solid #f1dfb1;
+            border-radius: 12px;
+            background: #fff9eb;
+            color: #76511b;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            padding: 21px;
+            border: 1px solid #e2e9f3;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 10px 30px #10234b08;
+        }
+
+        .stat-card span {
+            display: block;
+            color: #78849a;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stat-card strong {
+            display: block;
+            margin-top: 12px;
+            color: #071952;
+            font-size: 30px;
+        }
+
+        .panel {
+            margin-bottom: 23px;
+            padding: 22px;
+            border: 1px solid #e2e9f3;
+            border-radius: 17px;
+            background: white;
+            box-shadow: 0 10px 30px #10234b08;
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 13px;
+            margin-bottom: 17px;
+        }
+
+        h2 {
+            margin: 0;
+            color: #10234b;
+            font-size: 18px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input,
+        select {
+            min-width: 160px;
+            max-width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #dce5f0;
+            border-radius: 10px;
+            color: #243450;
+            background: white;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .btn {
+            padding: 11px 14px;
+            border: 0;
+            border-radius: 10px;
+            background: #087f89;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: #eaf0f7;
+            color: #263958;
+        }
+
+        .btn:hover {
+            filter: brightness(.96);
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #e7edf5;
+            border-radius: 11px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 850px;
+            border-collapse: collapse;
+            background: white;
+            font-size: 12px;
+        }
+
+        th,
+        td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #edf1f6;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            color: #5f6d86;
+            background: #f6f9fd;
+            font-size: 11px;
+            letter-spacing: .3px;
+        }
+
+        tbody tr:hover {
+            background: #f8fbff;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 8px;
+            border-radius: 20px;
+            background: #edf1f7;
+            color: #52617a;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .status-completed {
+            color: #08734e;
+            background: #e3f8ed;
+        }
+
+        .status-progress {
+            color: #875900;
+            background: #fff2cf;
+        }
+
+        .status-not-attempted {
+            color: #52617a;
+            background: #edf1f7;
+        }
+
+        .empty {
+            padding: 25px;
+            color: #77839a;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer {
+            padding: 10px 0 28px;
+            color: #8490a4;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .topbar {
+                padding: 16px 4%;
+            }
+
+            .brand {
+                font-size: 15px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-card strong {
+                font-size: 25px;
+            }
+
+            .panel {
+                padding: 15px;
+            }
+
+            .filters,
+            .filters input,
+            .filters select {
+                width: 100%;
+            }
+
+            .filters .btn {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            TECHNO INSTITUTE OF TECHNOLOGY
+            <small>CBT EXAMINATION · ADMIN CONTROL PANEL</small>
+        </div>
+        <button class="logout" id="logoutButton" type="button">Logout ↗</button>
+    </header>
+
+    <main class="container">
+        <div class="heading">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <div class="subheading">Registration and examination overview</div>
+            </div>
+            <button class="btn btn-secondary" id="refreshButton" type="button">
+                ↻ Refresh Data
+            </button>
+        </div>
+
+        <div class="demo-warning">
+            <strong>Demo storage:</strong> This dashboard reads data from this browser only.
+            It is not a shared online database. Do not use it as the official record
+            for a live examination.
+        </div>
+
+        <section class="stats" aria-label="Dashboard statistics">
+            <div class="stat-card">
+                <span>Total Registered</span>
+                <strong id="totalCandidates">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>Completed Exams</span>
+                <strong id="completedExams">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>In Progress</span>
+                <strong id="inProgressExams">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>Not Attempted</span>
+                <strong id="notAttemptedExams">0</strong>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Registered Candidates</h2>
+                <div class="filters">
+                    <input id="candidateSearch" type="search" placeholder="Search name / registration no.">
+                    <select id="candidateClassFilter" aria-label="Filter candidates by class">
+                        <option value="">All Classes</option>
+                        <option value="10th">10th</option>
+                        <option value="12th Science">12th Science</option>
+                        <option value="12th Arts">12th Arts</option>
+                    </select>
+                    <button class="btn" id="exportCandidatesButton" type="button">
+                        Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Registration No.</th>
+                            <th>Candidate Name</th>
+                            <th>Father's Name</th>
+                            <th>Class</th>
+                            <th>Mobile</th>
+                            <th>Date of Birth</th>
+                            <th>Registration Date</th>
+                            <th>Exam Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="candidateTableBody"></tbody>
+                </table>
+            </div>
+            <div id="candidateEmpty" class="empty" hidden>No matching candidates found.</div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Examination Results</h2>
+                <div class="filters">
+                    <input id="resultSearch" type="search" placeholder="Search name / registration no.">
+                    <select id="resultClassFilter" aria-label="Filter results by class">
+                        <option value="">All Classes</option>
+                        <option value="10th">10th</option>
+                        <option value="12th Science">12th Science</option>
+                        <option value="12th Arts">12th Arts</option>
+                    </select>
+                    <button class="btn" id="exportResultsButton" type="button">
+                        Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Registration No.</th>
+                            <th>Candidate Name</th>
+                            <th>Class</th>
+                            <th>Score</th>
+                            <th>Percentage</th>
+                            <th>Correct</th>
+                            <th>Wrong</th>
+                            <th>Unanswered</th>
+                            <th>Time Used</th>
+                            <th>Submitted At</th>
+                            <th>Submission Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultTableBody"></tbody>
+                </table>
+            </div>
+            <div id="resultEmpty" class="empty" hidden>No examination results found.</div>
+        </section>
+
+        <footer class="footer">
+            TECHNO INSTITUTE OF TECHNOLOGY · TIT CBT Examination Portal<br>
+            © <span id="currentYear"></span>
+        </footer>
+    </main>
+
+    <script src="admin-dashboard.js" defer></script>
+</body>
+
+</html>
